@@ -21,26 +21,23 @@
   <br><br>
 
   <!-- 入力エリア -->
-  <label for="value1">値1：</label>
-  <input type="number" id="value1" placeholder="値1"><br><br>
+  <input type="number" id="value1" placeholder="値1">
 
-  <label for="operator">演算子：</label>
   <select id="operator">
     <option value="">演算子を選択</option>
     <option value="+">+</option>
     <option value="-">-</option>
     <option value="*">×</option>
     <option value="/">÷</option>
-  </select><br><br>
+  </select>
 
-  <label for="value2">値2：</label>
-  <input type="number" id="value2" placeholder="値2"><br><br>
+  <input type="number" id="value2" placeholder="値2">
 
   <!-- 表示エリア -->
   <p id="formula">計算式：</p>
   <p id="result">両方の数値を入力してください</p>
 
-  <!-- JavaScript読み込み（index.htmlと同じ階層にあるcalculator.jsを指定） -->
+  <!-- JavaScriptの読み込み -->
   <script src="calculator.js"></script>
 </body>
 </html>
