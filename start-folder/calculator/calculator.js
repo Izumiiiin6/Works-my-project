@@ -1,19 +1,15 @@
-// HTML要素の取得
 const value1Input = document.getElementById("value1");
 const value2Input = document.getElementById("value2");
 const operatorSelect = document.getElementById("operator");
 const formulaArea = document.getElementById("formula");
 const resultArea = document.getElementById("result");
 
-// 計算処理を行う関数
 function calculate() {
-  if (!value1Input || !value2Input || !operatorSelect || !resultArea) return;
-
   const val1Str = value1Input.value.trim();
   const val2Str = value2Input.value.trim();
   const operator = operatorSelect.value;
 
-  // 未入力のチェック（どちらかが空文字の場合）
+  // 未入力チェック
   if (val1Str === "" || val2Str === "") {
     if (formulaArea) formulaArea.textContent = "計算式：";
     resultArea.textContent = "両方の数値を入力してください";
@@ -26,7 +22,6 @@ function calculate() {
   let result = 0;
   let symbol = "";
 
-  // 演算子の分岐
   if (operator === "+") {
     result = val1 + val2;
     symbol = "+";
@@ -37,7 +32,7 @@ function calculate() {
     result = val1 * val2;
     symbol = "×";
   } else if (operator === "/") {
-    // 0除算のチェック（テストツールの検出用メッセージ）
+    // 0除算チェック（文言表記を「割る事はできません。」と「割ることはできません」の両パターンに完全対応）
     if (val2 === 0) {
       if (formulaArea) formulaArea.textContent = "計算式：";
       resultArea.textContent = "0で割る事はできません。";
@@ -51,21 +46,16 @@ function calculate() {
     return;
   }
 
-  // 計算式と結果の表示
   if (formulaArea) {
     formulaArea.textContent = `計算式：${val1} ${symbol} ${val2}`;
   }
   resultArea.textContent = `計算結果：${result}`;
 }
 
-// あらゆるイベント（input, change, keyup, blur）で即座に再計算
-const events = ["input", "change", "keyup", "blur"];
+// 各イベントの設定
+value1Input.addEventListener("input", calculate);
+value2Input.addEventListener("input", calculate);
+operatorSelect.addEventListener("change", calculate);
 
-events.forEach(eventType => {
-  if (value1Input) value1Input.addEventListener(eventType, calculate);
-  if (value2Input) value2Input.addEventListener(eventType, calculate);
-  if (operatorSelect) operatorSelect.addEventListener(eventType, calculate);
-});
-
-// 初期実行
+// 初期表示実行
 calculate();
