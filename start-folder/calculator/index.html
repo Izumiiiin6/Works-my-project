@@ -2,29 +2,40 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>電卓</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <h1>電卓</h1>
+  
   <!-- ナビゲーション（全ページへのリンク） -->
   <nav>
     <a href="../index.html">トップへ</a>
     <a href="../JavaScriptWork/work_1_3/1_3function.html">関数の課題へ</a>
     <a href="../JavaScriptWork/work_1_4/1_4.html">基本構文の課題へ</a>
+    <a href="../contact.html">お問い合わせ</a>
+    <a href="../work.html">実績</a>
   </nav>
+
   <!-- 入力エリア -->
   <input type="number" id="value1" placeholder="値1">
-  
+
   <select id="operator">
     <option value="">演算子を選択</option>
-    <option value="+">＋（足し算）</option>
-    <option value="-">－（引き算）</option>
-    <option value="*">×（掛け算）</option>
-    <option value="/">÷（割り算）</option>
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">×</option>
+    <option value="/">÷</option>
   </select>
+
   <input type="number" id="value2" placeholder="値2">
-  <!-- 結果の表示エリア -->
-  <p id="result"></p>
+
+  <!-- 表示エリア -->
+  <p id="formula">計算式：</p>
+  <p id="result">両方の数値を入力してください</p>
+
+  <!-- JavaScriptの読み込み -->
   <script src="calculator.js"></script>
 </body>
 </html>
