@@ -35,5 +35,5 @@ if (op === '') {
   if (op === '*') answer = num1 * num2;
   if (op === '/') answer = num1 / num2;
   // ④ 計算式と結果を表示
-  resultArea.textContent = `${num1} ${op} ${num2} = ${answer}`;
-}
+  const opLabel = { '+': '+', '-': '-', '*': '×', '/': '÷' };
+  resultArea.textContent = `${num1} ${opLabel[op]} ${num2} = ${answer}`;
