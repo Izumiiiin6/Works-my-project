@@ -12,11 +12,15 @@ function calculate() {
   const val1 = value1Input.value;
   const val2 = value2Input.value;
   const op = operatorSelect.value;
-  // ① 値が入力されていない場合
-  if (val1 === '' || val2 === '' || op === '') {
-    resultArea.textContent = '両方の数値を入力してください';
-    return;
-  }
+// ① 値が入力されていない場合
+if (val1 === '' || val2 === '') {
+  resultArea.textContent = '両方の数値を入力してください';
+  return;
+}
+if (op === '') {
+  resultArea.textContent = '演算子を選択してください';
+  return;
+}
   const num1 = parseFloat(val1);
   const num2 = parseFloat(val2);
   // ② 割り算で0の場合
