@@ -3,6 +3,15 @@ const value1Input = document.getElementById('value1');
 const value2Input = document.getElementById('value2');
 const operatorSelect = document.getElementById('operator');
 const resultArea = document.getElementById('result');
+
+// 演算子の表示ラベルを定義
+const opLabel = {
+  '+': '＋',
+  '-': '－',
+  '*': '×',
+  '/': '÷'
+};
+
 // 値が変わるたびに計算する関数を呼び出す
 value1Input.addEventListener('input', calculate);
 value2Input.addEventListener('input', calculate);
@@ -35,5 +44,5 @@ if (op === '') {
   if (op === '*') answer = num1 * num2;
   if (op === '/') answer = num1 / num2;
   // ④ 計算式と結果を表示
-  const opLabel = { '+': '+', '-': '-', '*': '×', '/': '÷' };
   resultArea.textContent = `${num1} ${opLabel[op]} ${num2} = ${answer}`;
+  } // 
