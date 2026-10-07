@@ -1,41 +1,39 @@
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>電卓</title>
-  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <h1>電卓</h1>
-  
+  <!-- ナビゲーション -->
   <nav>
-    <a href="../index.html">トップへ</a>
-    <a href="../JavaScriptWork/work_1_3/1_3function.html">関数の課題へ</a>
-    <a href="../JavaScriptWork/work_1_4/1_4.html">基本構文の課題へ</a>
-    <a href="../contact.html">お問い合わせ</a>
-    <a href="../work.html">実績</a>
+    <ul>
+      <li><a href="../index.html">トップ</a></li>
+      <li><a href="../profile/index.html">プロフィール</a></li>
+      <li><a href="../works/index.html">作品一覧</a></li>
+      <li><a href="../calculator/index.html">電卓</a></li>
+      <!-- ご自身のページに合わせて追加してください -->
+    </ul>
   </nav>
-
-  <br><br>
-
-  <!-- 入力エリア -->
-  <input type="number" id="value1" placeholder="値1">
-
-  <select id="operator">
-    <option value="">演算子を選択</option>
-    <option value="+">+</option>
-    <option value="-">-</option>
-    <option value="*">×</option>
-    <option value="/">÷</option>
-  </select>
-
-  <input type="number" id="value2" placeholder="値2">
-
-  <!-- 表示エリア -->
-  <p id="formula">計算式：</p>
+  <h1>電卓</h1>
+  <!-- 値1 -->
+  <label>値1: <input type="number" id="num1"></label><br><br>
+  <!-- 演算子 -->
+  <label>演算子:
+    <select id="operator">
+      <option value="+">＋ 足し算</option>
+      <option value="-">－ 引き算</option>
+      <option value="*">× 掛け算</option>
+      <option value="/">÷ 割り算</option>
+    </select>
+  </label><br><br>
+  <!-- 値2 -->
+  <label>値2: <input type="number" id="num2"></label><br><br>
+  <!-- 結果表示エリア -->
   <p id="result">両方の数値を入力してください</p>
-
   <script src="calculator.js"></script>
 </body>
 </html>

@@ -1,61 +1,40 @@
-const value1Input = document.getElementById("value1");
-const value2Input = document.getElementById("value2");
-const operatorSelect = document.getElementById("operator");
-const formulaArea = document.getElementById("formula");
-const resultArea = document.getElementById("result");
-
+// 入力要素を取得
+const num1Input = document.getElementById('num1');
+const num2Input = document.getElementById('num2');
+const operatorSelect = document.getElementById('operator');
+const resultP = document.getElementById('result');
+// 計算を行う関数
 function calculate() {
-  const val1Str = value1Input.value.trim();
-  const val2Str = value2Input.value.trim();
+  const num1 = num1Input.value;
+  const num2 = num2Input.value;
   const operator = operatorSelect.value;
-
-  // 未入力チェック
-  if (val1Str === "" || val2Str === "") {
-    if (formulaArea) formulaArea.textContent = "計算式：";
-    resultArea.textContent = "両方の数値を入力してください";
+  // 値が入力されていない場合
+  if (num1 === '' || num2 === '') {
+    resultP.textContent = '両方の数値を入力してください';
     return;
   }
-
-  const val1 = parseFloat(val1Str);
-  const val2 = parseFloat(val2Str);
-
-  let result = 0;
-  let symbol = "";
-
-  if (operator === "+") {
-    result = val1 + val2;
-    symbol = "+";
-  } else if (operator === "-") {
-    result = val1 - val2;
-    symbol = "-";
-  } else if (operator === "*") {
-    result = val1 * val2;
-    symbol = "×";
-  } else if (operator === "/") {
-    // 0除算チェック（文言表記を「割る事はできません。」と「割ることはできません」の両パターンに完全対応）
-    if (val2 === 0) {
-      if (formulaArea) formulaArea.textContent = "計算式：";
-      resultArea.textContent = "0で割る事はできません。";
+  const n1 = parseFloat(num1);
+  const n2 = parseFloat(num2);
+  let result;
+  // 演算子によって計算を分岐
+  if (operator === '+') {
+    result = n1 + n2;
+  } else if (operator === '-') {
+    result = n1 - n2;
+  } else if (operator === '*') {
+    result = n1 * n2;
+  } else if (operator === '/') {
+    // 0で割る場合
+    if (n2 === 0) {
+      resultP.textContent = '0で割る事はできません。';
       return;
     }
-    result = val1 / val2;
-    symbol = "÷";
-  } else {
-    if (formulaArea) formulaArea.textContent = "計算式：";
-    resultArea.textContent = "両方の数値を入力してください";
-    return;
+    result = n1 / n2;
   }
-
-  if (formulaArea) {
-    formulaArea.textContent = `計算式：${val1} ${symbol} ${val2}`;
-  }
-  resultArea.textContent = `計算結果：${result}`;
+  // 計算式と結果を表示
+  resultP.textContent = n1 + ' ' + operator + ' ' + n2 + ' = ' + result;
 }
-
-// 各イベントの設定
-value1Input.addEventListener("input", calculate);
-value2Input.addEventListener("input", calculate);
-operatorSelect.addEventListener("change", calculate);
-
-// 初期表示実行
-calculate();
+// 値が変わるたびに計算を実行（動的に変化）
+num1Input.addEventListener('input', calculate);
+num2Input.addEventListener('input', calculate);
+operatorSelect.addEventListener('change', calculate);
