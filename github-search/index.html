@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>GitHub検索</title>
+</head>
+<body>
+  <h1>GitHub アカウント検索</h1>
+  <!-- 入力フォーム -->
+  <input type="text" id="username" placeholder="GitHubのユーザー名を入力">
+  <button id="searchBtn">検索</button>
+  <!-- 結果表示エリア -->
+  <div id="result"></div>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      // 入力値を取得
+      const username = document.getElementById('username').value;
+      const resultDiv = document.getElementById('result');
+      // 未入力チェック
+      if (username === '') {
+        resultDiv.innerHTML = '<p>ユーザー名を入力してください</p>';
+        return;
+      }
+      // GitHub APIにリクエスト
+      fetch(`https://api.github.com/users/${username}`)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          if (data.message === 'Not Found') {
+            resultDiv.innerHTML = '<p>ユーザーが見つかりませんでした</p>';
+          } else {
+            // 結果を表示
+            resultDiv.innerHTML = `
+              <img src="${data.avatar_url}" width="100">
+              <p>名前：${data.name}</p>
+              <p>ユーザー名：${data.login}</p>
+              <p>フォロワー数：${data.followers}</p>
+              <a href="${data.html_url}" target="_blank">GitHubページを見る</a>
+            `;
+          }
+        });
+    });
+  </script>
+</body>
+</html>
